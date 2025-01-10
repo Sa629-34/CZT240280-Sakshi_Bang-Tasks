@@ -1,2 +1,2 @@
-# CZT240280-Sakshi_Bang-Tasks
+TASK_2_AI
 This repository contains Python exercises and projects completed as part of the tasks.
