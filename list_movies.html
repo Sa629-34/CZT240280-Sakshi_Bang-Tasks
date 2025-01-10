@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie List</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .movie-list {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .movie-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .movie-details {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .movie-actions {
+            font-size: 14px;
+        }
+
+        .movie-actions a {
+            color: #4CAF50;
+        }
+
+        .movie-actions a:hover {
+            color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Movie List</h1>
+    </header>
+    <div class="movie-list">
+        <ul>
+            {% for movie in movies %}
+                <li>
+                    <div class="movie-title">{{ movie.Title }} ({{ movie.Year }})</div>
+                    <div class="movie-details">Directed by: {{ movie.Director }}<br>IMDb: {{ movie.IMDb }} | Rotten Tomatoes: {{ movie['Rotten Tomatoes'] }} | Metacritic: {{ movie.Metacritic }}</div>
+                    <div class="movie-actions">
+                        <a href="{{ url_for('update_movie', movie_id=movie.Id) }}">Edit</a> |
+                        <a href="{{ url_for('delete_movie', movie_id=movie.Id) }}">Delete</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('add_movie') }}">Add a new movie</a>
+    </div>
+</body>
+</html>
